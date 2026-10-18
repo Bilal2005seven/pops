@@ -1,0 +1,278 @@
+/* ===================================================
+   CEMENT MILLS COUNTERS — Industrial HMI/SCADA Theme
+   Pixel-accurate replica of ABB SCADA/HMI screen
+   =================================================== */
+
+/* Reset & Base */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family: 'Segoe UI', 'Tahoma', 'Arial', sans-serif;
+  background: #808088;
+}
+
+/* ---- App Root ---- */
+.app-root {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+/* ---- Control Bar (outside export area) ---- */
+.control-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 3px 12px;
+  background: #3a3a40;
+  border-bottom: 1px solid #222;
+  flex-shrink: 0;
+  z-index: 100;
+}
+
+.ctrl-btn {
+  background: #505058;
+  color: #d0d0d0;
+  border: 1px solid #666;
+  padding: 2px 10px;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  letter-spacing: 0.3px;
+  transition: background 0.15s;
+}
+
+.ctrl-btn:hover {
+  background: #686870;
+  color: #fff;
+}
+
+.ctrl-btn-reset {
+  margin-left: 16px;
+  color: #f0c040;
+  border-color: #8a7a30;
+}
+
+.ctrl-btn-reset:hover {
+  background: #6a5a20;
+  color: #ffe060;
+}
+
+/* ---- Dashboard (exported area) ---- */
+.dashboard {
+  flex: 1;
+  background: #8e8e96;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2px 14px 6px 14px;
+  overflow: hidden;
+  min-height: 0;
+}
+
+/* ---- Title ---- */
+.dashboard-title {
+  color: #d4aa00;
+  font-size: clamp(18px, 2.2vw, 26px);
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-align: center;
+  margin-bottom: 0px;
+  padding: 2px 0;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+  font-family: 'Segoe UI', 'Tahoma', 'Arial', sans-serif;
+  flex-shrink: 0;
+}
+
+/* ---- Mills Row ---- */
+.mills-row {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  gap: 6px;
+  width: 100%;
+  flex: 1;
+  min-height: 0;
+  padding: 0 6px;
+}
+
+/* ---- Mill Table Container ---- */
+.mill-table-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.mill-wide {
+  flex: 1;
+  min-width: 0;
+}
+
+.mill-narrow {
+  flex: 0.7;
+  min-width: 0;
+}
+
+/* ---- Mill Heading ---- */
+.mill-heading {
+  color: #d4aa00;
+  font-size: clamp(11px, 1.1vw, 14px);
+  font-weight: 700;
+  text-align: center;
+  letter-spacing: 2px;
+  padding: 0px 0 1px 0;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.4);
+  flex-shrink: 0;
+}
+
+/* ---- Table ---- */
+.mill-table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 2px solid #505058;
+  table-layout: fixed;
+  flex: 1;
+  min-height: 0;
+}
+
+.mill-table td {
+  border: 1px solid #5a5a64;
+  padding: 0;
+  vertical-align: middle;
+}
+
+/* ---- Row Labels ---- */
+.row-label {
+  background: #8e8e96;
+  color: #d4aa00;
+  font-size: clamp(9px, 0.9vw, 12px);
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 2px 4px !important;
+  width: 22%;
+  line-height: 1.15;
+  letter-spacing: 0.2px;
+  text-shadow: 0.5px 0.5px 1px rgba(0,0,0,0.3);
+  overflow: hidden;
+}
+
+.header-label {
+  font-size: clamp(8px, 0.85vw, 11px);
+}
+
+/* ---- Date Row ---- */
+.date-label {
+  font-size: clamp(10px, 1vw, 13px);
+  font-weight: 700;
+}
+
+.date-cell {
+  background: transparent;
+  padding: 2px 4px !important;
+}
+
+.date-input-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0px;
+}
+
+.hmi-date-input,
+.hmi-time-input {
+  background: #c0c0b0;
+  border: 1px solid #606068;
+  color: #111;
+  font-size: clamp(10px, 0.95vw, 13px);
+  font-weight: 700;
+  text-align: center;
+  padding: 0px 4px;
+  width: min(140px, 60%);
+  height: 18px;
+  font-family: 'Segoe UI', 'Tahoma', 'Arial', sans-serif;
+  outline: none;
+}
+
+.hmi-date-input:focus,
+.hmi-time-input:focus {
+  border-color: #d4aa00;
+  background: #d0d0c0;
+}
+
+/* ---- Column Headers ---- */
+.col-header {
+  background: #8e8e96;
+  color: #d4aa00;
+  font-size: clamp(9px, 0.9vw, 12px);
+  font-weight: 700;
+  text-align: center;
+  letter-spacing: 0.5px;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-shadow: 0.5px 0.5px 1px rgba(0,0,0,0.3);
+  border-bottom: 2px solid #505058 !important;
+}
+
+/* ---- Data Cells ---- */
+.cell-input {
+  background: #8e8e96;
+  padding: 3px 2px !important;
+}
+
+.cell-empty {
+  background: #8e8e96;
+}
+
+/* ---- HMI Input ---- */
+.hmi-input {
+  width: 100%;
+  background: #c8c8b8;
+  border: 1px solid #78787e;
+  color: #111;
+  font-size: clamp(10px, 0.95vw, 13px);
+  font-weight: 700;
+  text-align: right;
+  padding: 1px 4px;
+  height: 22px;
+  font-family: 'Segoe UI', 'Tahoma', 'Arial', sans-serif;
+  outline: none;
+  display: block;
+}
+
+.hmi-input:focus {
+  border-color: #d4aa00;
+  background: #d8d8c8;
+}
+
+/* ---- Responsive scaling ---- */
+@media (max-width: 850px) {
+  .mills-row {
+    flex-direction: column;
+    align-items: center;
+  }
+  .mill-wide, .mill-narrow {
+    max-width: 95%;
+    min-width: auto;
+    width: 95%;
+    flex: none;
+  }
+  .dashboard {
+    overflow-y: auto;
+  }
+  html, body, #root {
+    overflow: auto;
+  }
+}
