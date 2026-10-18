@@ -128,7 +128,7 @@ body {
 
 /* ---- Mill Heading ---- */
 .mill-heading {
-  color: #d4aa00;
+  color: #cfd400;
   font-size: clamp(11px, 1.1vw, 14px);
   font-weight: 700;
   text-align: center;
@@ -157,7 +157,7 @@ body {
 /* ---- Row Labels ---- */
 .row-label {
   background: #8e8e96;
-  color: #d4aa00;
+  color: #cfd400;
   font-size: clamp(9px, 0.9vw, 12px);
   font-weight: 700;
   text-transform: uppercase;
@@ -215,7 +215,7 @@ body {
 /* ---- Column Headers ---- */
 .col-header {
   background: #8e8e96;
-  color: #d4aa00;
+  color: #cfd400;
   font-size: clamp(9px, 0.9vw, 12px);
   font-weight: 700;
   text-align: center;
