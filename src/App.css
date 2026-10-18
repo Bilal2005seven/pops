@@ -71,6 +71,17 @@ body {
   color: #ffe060;
 }
 
+/* ---- HMI Screen Container (Navbar + Dashboard) ---- */
+.hmi-screen-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 0;
+  overflow: hidden;
+  background: #8e8e96;
+}
+
 /* ---- Dashboard (exported area) ---- */
 .dashboard {
   flex: 1;

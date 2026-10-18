@@ -1,0 +1,423 @@
+/* ===================================================
+   ABB / Heidelberg SCADA HMI Navbar Styles
+   Pixel-accurate replica of industrial control header
+   =================================================== */
+
+.hmi-header {
+  width: 100%;
+  background: #18181c;
+  color: #ffffff;
+  font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+  flex-shrink: 0;
+  user-select: none;
+  border-bottom: 1px solid #404048;
+}
+
+/* ---- Top tiny workplace tab bar ---- */
+.hmi-workplace-tab {
+  background: #1e1e24;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  padding: 0 8px;
+  gap: 5px;
+  font-size: 9.5px;
+  color: #a0a0a8;
+  border-bottom: 1px solid #282830;
+}
+
+.hmi-workplace-tab .tab-icon {
+  font-size: 9px;
+  opacity: 0.8;
+}
+
+.hmi-workplace-tab .tab-title {
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+}
+
+/* ---- Main 2-layer Navbar Container ---- */
+.hmi-navbar-body {
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+  height: 52px;
+  background: #18181c;
+  overflow: hidden;
+}
+
+/* ===================================================
+   Left Section (Top status strip + Lower toolbar)
+   =================================================== */
+.hmi-left-section {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+  border-right: 1px solid #33333a;
+}
+
+/* ---- Top Status Strip ---- */
+.hmi-status-strip {
+  display: flex;
+  align-items: center;
+  height: 26px;
+  background: #18181c;
+  border-bottom: 1px solid #2c2c34;
+  padding-right: 8px;
+  gap: 12px;
+  overflow: hidden;
+}
+
+/* ABB Logo Box */
+.hmi-abb-box {
+  width: 62px;
+  height: 100%;
+  background: #111114;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid #383840;
+  padding: 0 4px;
+  flex-shrink: 0;
+}
+
+.hmi-abb-svg {
+  width: 48px;
+  height: 20px;
+  color: #ffffff;
+}
+
+/* Red Alarm & Status Information */
+.hmi-alarm-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #ff2828;
+  font-size: 11px;
+  font-weight: 700;
+  white-space: nowrap;
+  letter-spacing: 0.3px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.hmi-red-square {
+  color: #e52020;
+  font-size: 11px;
+  line-height: 1;
+}
+
+.hmi-alarm-tag {
+  color: #ff2828;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.hmi-alarm-name {
+  color: #ff3333;
+  margin-right: 16px;
+}
+
+.hmi-alarm-detail {
+  color: #ff2828;
+  font-weight: 700;
+}
+
+/* ---- Lower Toolbar ---- */
+.hmi-toolbar {
+  display: flex;
+  align-items: center;
+  height: 26px;
+  background: #d4d6da;
+  padding: 0 4px;
+  gap: 4px;
+  border-top: 1px solid #eef0f4;
+  border-bottom: 1px solid #8e9096;
+}
+
+/* Green Circular Nav Arrow */
+.hmi-tb-icon-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hmi-green-circle {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #28a745;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.25);
+  border: 1px solid #1e7e34;
+}
+
+/* Blue Cube Dropdown */
+.hmi-cube-btn {
+  display: flex;
+  align-items: center;
+  gap: 1px;
+  padding: 1px 3px;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+
+.hmi-cube-btn:hover {
+  background: #c8cbd0;
+  border-color: #a0a4aa;
+}
+
+.hmi-tiny-arrow {
+  font-size: 8px;
+  color: #333333;
+  margin-left: 1px;
+}
+
+/* Display Dropdown / Input Box */
+.hmi-display-dropdown {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 220px;
+  height: 20px;
+}
+
+.hmi-dropdown-input {
+  width: 100%;
+  height: 100%;
+  background: #ffffff;
+  border: 1px solid #7d828a;
+  border-radius: 0;
+  padding: 0 16px 0 5px;
+  font-size: 10.5px;
+  font-weight: 600;
+  color: #222222;
+  font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+  cursor: default;
+  outline: none;
+}
+
+.hmi-dropdown-arrow {
+  position: absolute;
+  right: 4px;
+  font-size: 8px;
+  color: #555555;
+  pointer-events: none;
+}
+
+/* Toolbar Quick Icons */
+.hmi-tb-actions {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  margin-left: 2px;
+}
+
+.hmi-tool-btn {
+  background: #e2e4e8;
+  border: 1px solid #bcc0c6;
+  border-radius: 1px;
+  height: 20px;
+  padding: 0 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #333;
+}
+
+.hmi-tool-btn:hover {
+  background: #f0f2f6;
+  border-color: #8c929a;
+}
+
+.hmi-calc-badge {
+  font-size: 9px;
+  font-weight: 700;
+  color: #333;
+  letter-spacing: -0.5px;
+}
+
+/* ===================================================
+   Right Section: Navigation Controls & Alarms
+   =================================================== */
+.hmi-right-section {
+  display: flex;
+  align-items: stretch;
+  background: #18181c;
+  flex-shrink: 0;
+  height: 100%;
+}
+
+/* Generic Nav Item */
+.hmi-nav-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 10px;
+  border-right: 1px solid #303038;
+  font-size: 11px;
+  color: #e0e0e0;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.hmi-nav-item:hover {
+  background: #24242c;
+}
+
+.hmi-chevron {
+  font-size: 9px;
+  margin-left: 4px;
+  color: #a0a0a8;
+}
+
+/* Date & Time Block */
+.hmi-datetime-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #151518;
+  padding: 0 12px;
+  border-right: 1px solid #303038;
+  cursor: default;
+}
+
+.hmi-datetime-date {
+  font-size: 10.5px;
+  font-weight: 600;
+  color: #e4e4e8;
+  line-height: 1.15;
+}
+
+.hmi-datetime-time {
+  font-size: 10px;
+  font-weight: 600;
+  color: #b0b0b8;
+  line-height: 1.15;
+}
+
+/* Alarm Indicators Group */
+.hmi-alarm-group {
+  display: flex;
+  align-items: stretch;
+  border-top: 2px solid #e02424;
+  border-right: 1px solid #303038;
+  background: #1b1b20;
+}
+
+.hmi-alarm-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 9px;
+  border-right: 1px solid #282830;
+  cursor: pointer;
+  gap: 3px;
+}
+
+.hmi-alarm-item:last-child {
+  border-right: none;
+}
+
+.hmi-alarm-item:hover {
+  background: #282832;
+}
+
+.hmi-alarm-lbl {
+  font-size: 10px;
+  color: #dcdce0;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.hmi-counter-badge {
+  background: #d42222;
+  color: #ffffff;
+  font-size: 9px;
+  font-weight: 700;
+  border-radius: 50%;
+  width: 15px;
+  height: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 0 2px rgba(0,0,0,0.4);
+}
+
+/* Events */
+.hmi-events-box {
+  padding: 0 10px;
+}
+
+/* Operator Audit Button */
+.hmi-operator-audit-box {
+  padding: 0 6px;
+  background: #151518;
+}
+
+.hmi-operator-audit-btn {
+  background: #25252b;
+  border: 1px solid #4a4a54;
+  color: #ffffff;
+  font-size: 9px;
+  font-weight: 700;
+  line-height: 1.1;
+  padding: 4px 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 1px;
+}
+
+.hmi-operator-audit-btn:hover {
+  background: #32323a;
+  border-color: #666672;
+}
+
+/* Start/Stop */
+.hmi-startstop-box {
+  padding: 0 10px;
+}
+
+/* Hamburger Menu */
+.hmi-hamburger-box {
+  padding: 0 9px;
+  font-size: 14px;
+}
+
+/* Heidelberg Green Brand Block */
+.hmi-brand-block {
+  background: #007a3d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 12px;
+  cursor: default;
+  flex-shrink: 0;
+}
+
+.hmi-brand-inner {
+  display: flex;
+  align-items: center;
+}
+
+.hmi-brand-text {
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  font-family: 'Arial Black', Impact, 'Segoe UI Black', sans-serif;
+  text-transform: uppercase;
+}

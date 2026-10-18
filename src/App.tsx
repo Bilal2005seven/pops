@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import MillTable from './components/MillTable';
+import HmiNavbar from './components/HmiNavbar';
 import { getInitialData } from './data/initialData';
 import type { MillData, CellValue } from './data/initialData';
 import { exportPng, exportJpg, exportPdf } from './utils/exportUtils';
@@ -115,34 +116,38 @@ const App: React.FC = () => {
         </button>
       </div>
 
-      {/* Dashboard area - this is what gets exported */}
-      <div className="dashboard" ref={dashboardRef} id="dashboard">
-        <h1 className="dashboard-title">CEMENT MILLS COUNTERS</h1>
+      {/* HMI Screen Display (Navbar + Dashboard) - this is what gets exported */}
+      <div className="hmi-screen-container" ref={dashboardRef} id="dashboard">
+        <HmiNavbar />
 
-        <div className="mills-row">
-          <MillTable
-            title="CEMENT MILL - 1"
-            data={data.mill1}
-            onCellChange={updateMill('mill1')}
-            onDateChange={updateDate('mill1')}
-            onTimeChange={updateTime('mill1')}
-          />
+        <div className="dashboard">
+          <h1 className="dashboard-title">CEMENT MILLS COUNTERS</h1>
 
-          <MillTable
-            title="CEMENT MILL - 2"
-            data={data.mill2}
-            onCellChange={updateMill('mill2')}
-            onDateChange={updateDate('mill2')}
-            onTimeChange={updateTime('mill2')}
-          />
+          <div className="mills-row">
+            <MillTable
+              title="CEMENT MILL - 1"
+              data={data.mill1}
+              onCellChange={updateMill('mill1')}
+              onDateChange={updateDate('mill1')}
+              onTimeChange={updateTime('mill1')}
+            />
 
-          <MillTable
-            title="CEMENT MILL - 3"
-            data={data.mill3}
-            onCellChange={updateMill('mill3')}
-            onDateChange={updateDate('mill3')}
-            onTimeChange={updateTime('mill3')}
-          />
+            <MillTable
+              title="CEMENT MILL - 2"
+              data={data.mill2}
+              onCellChange={updateMill('mill2')}
+              onDateChange={updateDate('mill2')}
+              onTimeChange={updateTime('mill2')}
+            />
+
+            <MillTable
+              title="CEMENT MILL - 3"
+              data={data.mill3}
+              onCellChange={updateMill('mill3')}
+              onDateChange={updateDate('mill3')}
+              onTimeChange={updateTime('mill3')}
+            />
+          </div>
         </div>
       </div>
     </div>
