@@ -1,12 +1,26 @@
 import { toPng, toJpeg } from 'html-to-image';
 import { jsPDF } from 'jspdf';
 
+/**
+ * Ensures all live input values are mirrored as DOM attributes
+ * so html-to-image cloneNode reliably captures the exact current user inputs.
+ */
+function syncInputs(element: HTMLElement) {
+  const inputs = element.querySelectorAll<HTMLInputElement>('input');
+  inputs.forEach((input) => {
+    input.setAttribute('value', input.value);
+  });
+}
+
 export async function exportPng(element: HTMLElement, filename = 'cement-mills-counters.png') {
   try {
+    syncInputs(element);
     const dataUrl = await toPng(element, {
       quality: 1,
       pixelRatio: 3,
-      backgroundColor: '#b0b0b8',
+      backgroundColor: '#8e8e96',
+      width: element.scrollWidth,
+      height: element.scrollHeight,
     });
     downloadDataUrl(dataUrl, filename);
   } catch (err) {
@@ -17,10 +31,13 @@ export async function exportPng(element: HTMLElement, filename = 'cement-mills-c
 
 export async function exportJpg(element: HTMLElement, filename = 'cement-mills-counters.jpg') {
   try {
+    syncInputs(element);
     const dataUrl = await toJpeg(element, {
       quality: 0.95,
       pixelRatio: 3,
-      backgroundColor: '#b0b0b8',
+      backgroundColor: '#8e8e96',
+      width: element.scrollWidth,
+      height: element.scrollHeight,
     });
     downloadDataUrl(dataUrl, filename);
   } catch (err) {
@@ -31,10 +48,13 @@ export async function exportJpg(element: HTMLElement, filename = 'cement-mills-c
 
 export async function exportPdf(element: HTMLElement, filename = 'cement-mills-counters.pdf') {
   try {
+    syncInputs(element);
     const dataUrl = await toPng(element, {
       quality: 1,
       pixelRatio: 3,
-      backgroundColor: '#b0b0b8',
+      backgroundColor: '#8e8e96',
+      width: element.scrollWidth,
+      height: element.scrollHeight,
     });
 
     const img = new Image();
@@ -56,7 +76,7 @@ export async function exportPdf(element: HTMLElement, filename = 'cement-mills-c
 
     const pageWidth = pdf.internal.pageSize.getWidth();
     const pageHeight = pdf.internal.pageSize.getHeight();
-    const margin = 5;
+    const margin = 4;
 
     let pdfImgWidth = pageWidth - 2 * margin;
     let pdfImgHeight = pdfImgWidth / aspectRatio;

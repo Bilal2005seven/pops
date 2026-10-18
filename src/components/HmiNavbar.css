@@ -164,18 +164,50 @@
   flex-shrink: 0;
 }
 
-.hmi-alarm-tag {
+.hmi-alarm-tag-input {
   color: #ff2828;
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.5px;
+  background: transparent;
+  border: 1px solid transparent;
+  outline: none;
+  font-family: inherit;
+  width: 86px;
+  padding: 1px 2px;
+  border-radius: 1px;
 }
 
-.hmi-alarm-name {
+.hmi-alarm-tag-input:hover {
+  border-color: rgba(255, 40, 40, 0.4);
+}
+
+.hmi-alarm-tag-input:focus {
+  background: #1c1c24;
+  border-color: #ff2828;
+}
+
+.hmi-alarm-name-input {
   color: #ff3333;
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.3px;
+  background: transparent;
+  border: 1px solid transparent;
+  outline: none;
+  font-family: inherit;
+  width: 155px;
+  padding: 1px 2px;
+  border-radius: 1px;
+}
+
+.hmi-alarm-name-input:hover {
+  border-color: rgba(255, 51, 51, 0.4);
+}
+
+.hmi-alarm-name-input:focus {
+  background: #1c1c24;
+  border-color: #ff3333;
 }
 
 .hmi-status-right {
@@ -186,11 +218,28 @@
   text-overflow: ellipsis;
 }
 
-.hmi-alarm-detail {
+.hmi-alarm-detail-input {
   color: #ff2828;
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.3px;
+  background: transparent;
+  border: 1px solid transparent;
+  outline: none;
+  font-family: inherit;
+  width: 295px;
+  text-align: right;
+  padding: 1px 2px;
+  border-radius: 1px;
+}
+
+.hmi-alarm-detail-input:hover {
+  border-color: rgba(255, 40, 40, 0.4);
+}
+
+.hmi-alarm-detail-input:focus {
+  background: #1c1c24;
+  border-color: #ff2828;
 }
 
 /* Row 2: Lower Toolbar Row (aligned with FA0202SG05) */
@@ -322,18 +371,52 @@
   cursor: default;
 }
 
-.hmi-datetime-date {
+.hmi-datetime-date-input {
   font-size: 10.5px;
   font-weight: 600;
   color: #e4e4e8;
   line-height: 1.15;
+  background: transparent;
+  border: 1px solid transparent;
+  outline: none;
+  font-family: inherit;
+  text-align: center;
+  width: 78px;
+  padding: 0 1px;
+  border-radius: 1px;
 }
 
-.hmi-datetime-time {
+.hmi-datetime-date-input:hover {
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+.hmi-datetime-date-input:focus {
+  background: #202028;
+  border-color: #686874;
+}
+
+.hmi-datetime-time-input {
   font-size: 10px;
   font-weight: 600;
   color: #b0b0b8;
   line-height: 1.15;
+  background: transparent;
+  border: 1px solid transparent;
+  outline: none;
+  font-family: inherit;
+  text-align: center;
+  width: 60px;
+  padding: 0 1px;
+  border-radius: 1px;
+}
+
+.hmi-datetime-time-input:hover {
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+.hmi-datetime-time-input:focus {
+  background: #202028;
+  border-color: #686874;
 }
 
 /* Alarm Indicators Group */

@@ -1,14 +1,15 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import MillTable from './components/MillTable';
 import HmiNavbar from './components/HmiNavbar';
-import { getInitialData } from './data/initialData';
-import type { MillData, CellValue } from './data/initialData';
+import { getInitialData, INITIAL_NAVBAR_DATA } from './data/initialData';
+import type { MillData, CellValue, NavbarData } from './data/initialData';
 import { exportPng, exportJpg, exportPdf } from './utils/exportUtils';
 import './App.css';
 
 const STORAGE_KEY = 'cement-mills-counters-data';
 
 interface AllMillData {
+  navbar: NavbarData;
   mill1: MillData;
   mill2: MillData;
   mill3: MillData;
@@ -18,7 +19,17 @@ function loadFromStorage(): AllMillData | null {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (raw) {
-      return JSON.parse(raw) as AllMillData;
+      const parsed = JSON.parse(raw);
+      if (parsed.mill1 && parsed.mill2 && parsed.mill3) {
+        return {
+          navbar: parsed.navbar
+            ? { ...INITIAL_NAVBAR_DATA, ...parsed.navbar }
+            : structuredClone(INITIAL_NAVBAR_DATA),
+          mill1: parsed.mill1,
+          mill2: parsed.mill2,
+          mill3: parsed.mill3,
+        };
+      }
     }
   } catch {
     // Corrupted data, ignore
@@ -45,6 +56,16 @@ const App: React.FC = () => {
   useEffect(() => {
     saveToStorage(data);
   }, [data]);
+
+  const updateNavbar = useCallback(
+    (field: keyof NavbarData, value: string) => {
+      setData((prev) => ({
+        ...prev,
+        navbar: { ...prev.navbar, [field]: value },
+      }));
+    },
+    []
+  );
 
   const updateMill = useCallback(
     (millKey: 'mill1' | 'mill2' | 'mill3') =>
@@ -118,7 +139,7 @@ const App: React.FC = () => {
 
       {/* HMI Screen Display (Navbar + Dashboard) - this is what gets exported */}
       <div className="hmi-screen-container" ref={dashboardRef} id="dashboard">
-        <HmiNavbar />
+        <HmiNavbar data={data.navbar} onChange={updateNavbar} />
 
         <div className="dashboard">
           <h1 className="dashboard-title">CEMENT MILLS COUNTERS</h1>

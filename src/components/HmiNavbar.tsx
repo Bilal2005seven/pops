@@ -1,16 +1,23 @@
 import React from 'react';
+import type { NavbarData } from '../data/initialData';
+import { INITIAL_NAVBAR_DATA } from '../data/initialData';
 import './HmiNavbar.css';
 
 interface HmiNavbarProps {
-  dateTime?: {
-    date: string;
-    time: string;
-  };
+  data?: NavbarData;
+  onChange?: (field: keyof NavbarData, value: string) => void;
 }
 
 const HmiNavbar: React.FC<HmiNavbarProps> = ({
-  dateTime = { date: '10/18/2026', time: '11:56' },
+  data = INITIAL_NAVBAR_DATA,
+  onChange,
 }) => {
+  const handleChange = (field: keyof NavbarData) => (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (onChange) {
+      onChange(field, e.target.value);
+    }
+  };
+
   return (
     <header className="hmi-header" id="hmi-header">
       {/* Top workplace tab bar */}
@@ -73,14 +80,36 @@ const HmiNavbar: React.FC<HmiNavbarProps> = ({
                 <rect x="1" y="1" width="12" height="12" fill="#d32020" stroke="#ff4d4d" strokeWidth="1" />
                 <rect x="3.5" y="3.5" width="7" height="7" fill="#e8e8e8" />
               </svg>
-              <span className="hmi-alarm-tag">FA0202SG05</span>
-              <span className="hmi-alarm-name">Pnuematic Cut Off Gate</span>
+              {/* Editable Alarm Tag (e.g., FA0202SG05) */}
+              <input
+                type="text"
+                className="hmi-alarm-tag-input"
+                value={data.alarmTag}
+                defaultValue={data.alarmTag}
+                onChange={handleChange('alarmTag')}
+                title="Click to edit alarm identifier"
+              />
+              {/* Editable Alarm Name */}
+              <input
+                type="text"
+                className="hmi-alarm-name-input"
+                value={data.alarmName}
+                defaultValue={data.alarmName}
+                onChange={handleChange('alarmName')}
+                title="Click to edit equipment name"
+              />
             </div>
 
             <div className="hmi-status-right">
-              <span className="hmi-alarm-detail">
-                Close Limit SW Flt Failure 18.10.26 11:50:21
-              </span>
+              {/* Editable Alarm Detail Message */}
+              <input
+                type="text"
+                className="hmi-alarm-detail-input"
+                value={data.alarmDetail}
+                defaultValue={data.alarmDetail}
+                onChange={handleChange('alarmDetail')}
+                title="Click to edit alarm detail message"
+              />
             </div>
           </div>
 
@@ -154,10 +183,24 @@ const HmiNavbar: React.FC<HmiNavbarProps> = ({
 
         {/* Column 3: Right Section - Controls & Heidelberg Logo */}
         <div className="hmi-col-right">
-          {/* Date & Time Block */}
+          {/* Editable Date & Time Block */}
           <div className="hmi-nav-item hmi-datetime-box">
-            <span className="hmi-datetime-date">{dateTime.date}</span>
-            <span className="hmi-datetime-time">{dateTime.time}</span>
+            <input
+              type="text"
+              className="hmi-datetime-date-input"
+              value={data.date}
+              defaultValue={data.date}
+              onChange={handleChange('date')}
+              title="Click to edit date"
+            />
+            <input
+              type="text"
+              className="hmi-datetime-time-input"
+              value={data.time}
+              defaultValue={data.time}
+              onChange={handleChange('time')}
+              title="Click to edit time"
+            />
           </div>
 
           {/* Alarm Group with top red accent line */}

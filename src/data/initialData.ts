@@ -1,6 +1,22 @@
 // null = no input box (dash in reference), number = editable value
 export type CellValue = number | null;
 
+export interface NavbarData {
+  alarmTag: string;
+  alarmName: string;
+  alarmDetail: string;
+  date: string;
+  time: string;
+}
+
+export const INITIAL_NAVBAR_DATA: NavbarData = {
+  alarmTag: 'FA0202SG05',
+  alarmName: 'Pnuematic Cut Off Gate',
+  alarmDetail: 'Close Limit SW Flt Failure 18.10.26 11:50:21',
+  date: '10/18/2026',
+  time: '11:56',
+};
+
 export interface MillData {
   date: string;
   time: string;
@@ -61,6 +77,7 @@ export const INITIAL_MILL_3: MillData = {
 
 export function getInitialData() {
   return {
+    navbar: structuredClone(INITIAL_NAVBAR_DATA),
     mill1: structuredClone(INITIAL_MILL_1),
     mill2: structuredClone(INITIAL_MILL_2),
     mill3: structuredClone(INITIAL_MILL_3),
