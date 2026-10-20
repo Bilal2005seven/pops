@@ -3,7 +3,7 @@ import MillTable from './components/MillTable';
 import HmiNavbar from './components/HmiNavbar';
 import { getInitialData, INITIAL_NAVBAR_DATA } from './data/initialData';
 import type { MillData, CellValue, NavbarData } from './data/initialData';
-import { exportPng, exportJpg, exportPdf } from './utils/exportUtils';
+import { exportPng, exportJpg, exportPdf, exportExcel } from './utils/exportUtils';
 import './App.css';
 
 const STORAGE_KEY = 'cement-mills-counters-data';
@@ -51,18 +51,24 @@ const App: React.FC = () => {
   });
 
   const dashboardRef = useRef<HTMLDivElement>(null);
+  const dataRef = useRef(data);
 
-  // Save to localStorage on every change
+  // Save to localStorage and keep dataRef synchronized
   useEffect(() => {
+    dataRef.current = data;
     saveToStorage(data);
   }, [data]);
 
   const updateNavbar = useCallback(
     (field: keyof NavbarData, value: string) => {
-      setData((prev) => ({
-        ...prev,
-        navbar: { ...prev.navbar, [field]: value },
-      }));
+      setData((prev) => {
+        const next = {
+          ...prev,
+          navbar: { ...prev.navbar, [field]: value },
+        };
+        dataRef.current = next;
+        return next;
+      });
     },
     []
   );
@@ -73,7 +79,9 @@ const App: React.FC = () => {
         setData((prev) => {
           const mill = structuredClone(prev[millKey]);
           mill.rows[rowIndex].values[colIndex] = value;
-          return { ...prev, [millKey]: mill };
+          const next = { ...prev, [millKey]: mill };
+          dataRef.current = next;
+          return next;
         });
       },
     []
@@ -81,20 +89,28 @@ const App: React.FC = () => {
 
   const updateDate = useCallback(
     (millKey: 'mill1' | 'mill2' | 'mill3') => (date: string) => {
-      setData((prev) => ({
-        ...prev,
-        [millKey]: { ...prev[millKey], date },
-      }));
+      setData((prev) => {
+        const next = {
+          ...prev,
+          [millKey]: { ...prev[millKey], date },
+        };
+        dataRef.current = next;
+        return next;
+      });
     },
     []
   );
 
   const updateTime = useCallback(
     (millKey: 'mill1' | 'mill2' | 'mill3') => (time: string) => {
-      setData((prev) => ({
-        ...prev,
-        [millKey]: { ...prev[millKey], time },
-      }));
+      setData((prev) => {
+        const next = {
+          ...prev,
+          [millKey]: { ...prev[millKey], time },
+        };
+        dataRef.current = next;
+        return next;
+      });
     },
     []
   );
@@ -103,6 +119,7 @@ const App: React.FC = () => {
     if (window.confirm('Reset all values to the original reference data?')) {
       const initial = getInitialData();
       setData(initial);
+      dataRef.current = initial;
       saveToStorage(initial);
     }
   };
@@ -119,6 +136,17 @@ const App: React.FC = () => {
     if (dashboardRef.current) exportPdf(dashboardRef.current);
   };
 
+  const handleExportExcel = () => {
+    if (document.activeElement instanceof HTMLElement) {
+      document.activeElement.blur();
+    }
+    exportExcel({
+      mill1: dataRef.current.mill1,
+      mill2: dataRef.current.mill2,
+      mill3: dataRef.current.mill3,
+    });
+  };
+
   return (
     <div className="app-root">
       {/* Control bar - outside the exported dashboard */}
@@ -131,6 +159,9 @@ const App: React.FC = () => {
         </button>
         <button className="ctrl-btn" onClick={handleExportPdf} title="Export PDF">
           ⬇ PDF
+        </button>
+        <button className="ctrl-btn" onClick={handleExportExcel} title="Download Excel (.xlsx)">
+          Download Excel (.xlsx)
         </button>
         <button className="ctrl-btn ctrl-btn-reset" onClick={handleReset} title="Reset to reference values">
           ↺ Reset
